@@ -1,0 +1,74 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"module": "esnext",
+		"moduleResolution": "node",
+
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"noImplicitThis": true,
+		"useUnknownInCatchVariables": true,
+		"alwaysStrict": true,
+
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+
+		"allowJs": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+
+		"jsx": "react",
+		"jsxFactory": "React.createElement",
+		"jsxFragmentFactory": "React.Fragment",
+
+		// alias
+		"baseUrl": "src",
+		"paths": {
+			"@app/*": ["app/*"],
+			"@entities/*": ["entities/*"],
+			"@features/*": ["features/*"],
+			"@shared/*": ["shared/*"],
+			"@pages/*": ["pages/*"],
+			"@widgets/*": ["widgets/*"],
+			"@/*": ["*"]
+		},
+
+		"types": ["node", "jest", "react", "react-dom"],
+
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": [
+		"src",
+		"src/**/*.ts",
+		"src/**/*.tsx",
+		"src/**/*.d.ts",
+		"src/**/*.js",
+		"src/**/*.jsx",
+		".eslintrc.js",
+		"craco.config.js",
+		"commitlint.config.js"
+	],
+	"exclude": [
+		"node_modules",
+		"dist",
+		"build",
+		"coverage",
+		".husky",
+		"**/*.test.ts",
+		"**/*.test.tsx",
+		"**/*.spec.ts",
+		"**/*.spec.tsx"
+	]
+}
