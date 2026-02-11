@@ -1,0 +1,10 @@
+root = true  # Этот файл главный (не искать .editorconfig выше)
+
+[*]  # Применять ко всем файлам
+
+indent_style = tab     # Отступы табами
+indent_size = 4        # Размер отступа = 4 пробела
+charset = utf-8         # Кодировка UTF-8
+trim_trailing_whitespace = true  # Удалять пробелы в концах строк
+insert_final_newline = true     # Добавлять пустую строку в конце файла
+end_of_line = lf               # Unix-стиль окончания строк (LF)
