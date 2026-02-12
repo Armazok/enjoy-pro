@@ -1,27 +1,19 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import { ErrorBoundary } from '@app/providers';
-
-import { Login } from '@pages/login';
-import { NotFound } from '@pages/not-found';
-import { Users } from '@pages/users';
+import { MainLayout } from '@app/layouts';
+import { routeConfig } from '@app/providers';
 
 function App() {
 	return (
-		<BrowserRouter>
-			<ErrorBoundary fallback={<div>Oops!</div>}>
-				<Suspense fallback={<div>Loading...</div>}>
-					<Routes>
-						<Route path="/" element={<div>Home</div>} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/users" element={<Users />} />
-						<Route path="*" element={<NotFound />} />
-					</Routes>
-				</Suspense>
-			</ErrorBoundary>
-		</BrowserRouter>
+		<Routes>
+			<Route element={<MainLayout />}>
+				{routeConfig.map((route) => (
+					<Route key={route.path} path={route.path} element={route.element} />
+				))}
+			</Route>
+		</Routes>
 	);
 }
 
