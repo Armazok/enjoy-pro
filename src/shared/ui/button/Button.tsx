@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-interface ButtonProps {}
+import { Button as AntdButton } from 'antd';
 
-export const Button = ({}: ButtonProps) => {
-	return <div>Button</div>;
-};
+import type { ButtonProps as AntdButtonProps } from 'antd';
+
+interface ButtonProps extends AntdButtonProps {}
+
+export const Button = memo(({ children, type = 'primary', ...otherProps }: ButtonProps) => {
+	return (
+		<AntdButton type={type} {...otherProps}>
+			{children}
+		</AntdButton>
+	);
+});
 
 Button.displayName = 'Button';
