@@ -1,1 +1,1 @@
-export { ROUTES } from './routes/routes.enum';
+export { axiosInstance } from './api/axios-instance';

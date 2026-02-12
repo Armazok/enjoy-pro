@@ -1,17 +1,12 @@
 import React from 'react';
 
-import { Button } from '@shared/ui';
+import { LoginForm } from '@features/auth';
 
 interface LoginProps {}
 
 const Login = ({}: LoginProps) => {
-	return (
-		<div>
-			Login
-			<Button />
-		</div>
-	);
+	return <LoginForm />;
 };
 
-Login.displayName = 'Login';
+Login.displayName = 'Login Page';
 export default Login;
