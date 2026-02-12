@@ -1,5 +1,7 @@
-import type React from 'react';
+/* eslint-disable no-console */
+
 import { useEffect } from 'react';
+import type { FC } from 'react';
 
 interface ErrorLoggerProps {
 	error: Error;
@@ -8,7 +10,7 @@ interface ErrorLoggerProps {
 	showInConsole?: boolean;
 }
 
-export const ErrorLogger: React.FC<ErrorLoggerProps> = ({
+export const ErrorLogger: FC<ErrorLoggerProps> = ({
 	error,
 	context,
 	componentName = 'Component',
@@ -21,8 +23,8 @@ export const ErrorLogger: React.FC<ErrorLoggerProps> = ({
 				'color: red; font-weight: bold;',
 			);
 
-			console.log(`Сообщение:`, 'color: orange;', error.message);
-			console.log(`Стек:`, 'color: orange;', error.stack);
+			console.log(`Сообщение:`, 'color: orange;', error.message || '');
+			console.log(`Стек:`, 'color: orange;', error.stack || '');
 
 			if (context) {
 				console.log(`Контекст:`, 'color: orange;', context);

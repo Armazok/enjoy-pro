@@ -4,6 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@tanstack/react-query": "^4.43.0",
+		"@tanstack/react-query-devtools": "^4.43.0",
 		"antd": "^5.29.3",
 		"axios": "^1.13.5",
 		"dayjs": "^1.11.19",
