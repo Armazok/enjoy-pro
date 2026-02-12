@@ -83,6 +83,19 @@ module.exports = {
 	},
 
 	rules: {
+		'prettier/prettier': [
+			'error',
+			{
+				useTabs: true,
+				tabWidth: 4,
+				semi: true,
+				singleQuote: true,
+				printWidth: 100,
+				trailingComma: 'all',
+				endOfLine: 'lf',
+			},
+		],
+
 		// ============ БАЗОВЫЕ ПРАВИЛА ============
 		'no-empty-pattern': 'off',
 		'no-console': ['warn', { allow: ['warn', 'error'] }],

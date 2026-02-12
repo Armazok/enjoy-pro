@@ -2,11 +2,13 @@ import React from 'react';
 
 import { Outlet } from 'react-router-dom';
 
+import { Header } from '@widgets/header';
+
 export const MainLayout = () => (
-	<div>
-		<header>Header</header>
+	<>
+		<Header />
 		<main>
 			<Outlet />
 		</main>
-	</div>
+	</>
 );

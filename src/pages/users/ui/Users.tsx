@@ -3,7 +3,7 @@ import React from 'react';
 interface UsersProps {}
 
 const Users = ({}: UsersProps) => {
-	return <div>Users</div>;
+	return <>Users list</>;
 };
 
 Users.displayName = 'Users';

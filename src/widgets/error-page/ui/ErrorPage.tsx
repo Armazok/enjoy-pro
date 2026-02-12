@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Result } from 'antd';
 
-import { ROUTES } from '@shared/config';
+import { ROUTES } from '@shared/constant';
 import { Button } from '@shared/ui';
 
 import { defaultErrorConfig } from '../config/ErrorConfig';

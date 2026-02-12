@@ -66,6 +66,7 @@
 		"build",
 		"coverage",
 		".husky",
+		".idea",
 		"**/*.test.ts",
 		"**/*.test.tsx",
 		"**/*.spec.ts",
