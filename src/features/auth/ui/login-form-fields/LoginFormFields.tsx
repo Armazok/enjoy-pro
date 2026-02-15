@@ -1,6 +1,8 @@
 import React, { type ChangeEvent, type FormEvent } from 'react';
 
-import { Button, Input } from 'antd';
+import { Button, Input, Loader } from '@shared/ui';
+
+import { ButtonWrapper, FieldWrapper } from './LoginFormFields.style';
 
 interface LoginFormFieldsProps {
 	login: string;
@@ -21,7 +23,7 @@ export const LoginFormFields: React.FC<LoginFormFieldsProps> = ({
 }) => {
 	return (
 		<form onSubmit={onSubmit}>
-			<div style={{ marginBottom: '15px' }}>
+			<FieldWrapper>
 				<Input
 					value={login}
 					onChange={onChangeLogin}
@@ -29,9 +31,9 @@ export const LoginFormFields: React.FC<LoginFormFieldsProps> = ({
 					disabled={isPending}
 					required
 				/>
-			</div>
+			</FieldWrapper>
 
-			<div style={{ marginBottom: '15px' }}>
+			<FieldWrapper>
 				<Input.Password
 					value={password}
 					onChange={onChangePassword}
@@ -39,11 +41,17 @@ export const LoginFormFields: React.FC<LoginFormFieldsProps> = ({
 					disabled={isPending}
 					required
 				/>
-			</div>
+			</FieldWrapper>
 
-			<Button disabled={isPending || !login || !password} type="primary" htmlType="submit">
-				{isPending ? 'Вход...' : 'Войти'}
-			</Button>
+			<ButtonWrapper>
+				<Button
+					disabled={isPending || !login || !password}
+					type="primary"
+					htmlType="submit"
+				>
+					{isPending ? <Loader /> : 'Войти'}
+				</Button>
+			</ButtonWrapper>
 		</form>
 	);
 };

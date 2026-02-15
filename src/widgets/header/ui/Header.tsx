@@ -4,18 +4,15 @@ import { NavLink } from 'react-router-dom';
 
 import { routeConfig } from '@app/providers';
 
-import { authStorage, useLogout } from '@entities/auth';
-
-import { Button } from '@shared/ui';
+import { authStorage } from '@entities/auth';
 
 interface HeaderProps {}
 
 const Header = ({}: HeaderProps) => {
-	const { mutate: logout } = useLogout();
 	const isAuthenticated = !!authStorage.getToken();
 
 	return (
-		<header style={{ padding: '1rem', borderBottom: '1px solid #ccc' }}>
+		<header style={{ padding: '1rem', borderBottom: '1px solid #ccc', marginBottom: '20px' }}>
 			<nav>
 				{routeConfig
 					.filter((route) => route.meta?.label && !route.meta.hidden)
@@ -41,8 +38,6 @@ const Header = ({}: HeaderProps) => {
 						);
 					})}
 			</nav>
-
-			{isAuthenticated && <Button onClick={() => logout()}>Logout</Button>}
 		</header>
 	);
 };

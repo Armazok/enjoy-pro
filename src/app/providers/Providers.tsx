@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter } from 'react-router-dom';
 
+import { Loader } from '@shared/ui';
+
 import { AuthInterceptorsProvider } from './auth-interceptors-provider/AuthInterceptorsProvider';
 import { ErrorBoundary } from './error-boundary/ui/ErrorBoundary';
 
@@ -19,8 +21,8 @@ export const Providers = ({ children }: ProvidersProps) => {
 		<StrictMode>
 			<BrowserRouter>
 				<QueryClientProvider client={queryClient}>
-					<ErrorBoundary fallback={<div>Oops!</div>}>
-						<Suspense fallback={''}>
+					<ErrorBoundary fallback={<Loader />}>
+						<Suspense fallback={<Loader />}>
 							<AuthInterceptorsProvider>{children}</AuthInterceptorsProvider>
 						</Suspense>
 					</ErrorBoundary>

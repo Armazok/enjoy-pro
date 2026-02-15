@@ -16,7 +16,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 	}
 
 	componentDidCatch(_error: Error, _errorInfo: ErrorInfo) {
-		// для аналитики Sentry или другом аналогичном
+		// отправка аналитики
 	}
 
 	render() {

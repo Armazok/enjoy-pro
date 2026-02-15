@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ROUTES } from '@shared/constant';
 
-import { useLogin } from '../api/auth-query';
+import { useLogin } from '../hook/useLogin';
 
 type LoginFormState = {
 	login: string;

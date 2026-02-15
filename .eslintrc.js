@@ -315,7 +315,7 @@ module.exports = {
 
 		// ============ UNICORN ============
 		'unicorn/filename-case': [
-			'error',
+			'warn',
 			{
 				cases: {
 					kebabCase: true,

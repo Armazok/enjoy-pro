@@ -1,9 +1,9 @@
 import React from 'react';
 
-interface UsersProps {}
+import { UsersList } from '@features/users';
 
-const Users = ({}: UsersProps) => {
-	return <>Users list</>;
+const Users = () => {
+	return <UsersList />;
 };
 
 Users.displayName = 'Users';
