@@ -2,9 +2,7 @@ import React from 'react';
 
 import { LoginForm } from '@features/auth';
 
-interface LoginProps {}
-
-const Login = ({}: LoginProps) => {
+const Login = () => {
 	return <LoginForm />;
 };
 
