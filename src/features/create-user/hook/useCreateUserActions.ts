@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { type UserBase, useUserCreate } from '@entities/users';
 
 export const useCreateUserAction = (onSuccessClose: () => void) => {
-	const { mutate, isPending, isError } = useUserCreate();
+	const { mutate, isPending, isError, reset } = useUserCreate();
 
 	const submitCreateUser = useCallback(
 		(data: UserBase) => {
@@ -23,5 +23,6 @@ export const useCreateUserAction = (onSuccessClose: () => void) => {
 		submitCreateUser,
 		isPending,
 		isError,
+		reset,
 	};
 };

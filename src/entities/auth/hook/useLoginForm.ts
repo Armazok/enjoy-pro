@@ -7,11 +7,11 @@ import { ROUTES } from '@shared/constant';
 
 import { useLogin } from '../hook/useLogin';
 
-type LoginFormState = {
+interface LoginFormState {
 	login: string;
 	password: string;
 	error: string | null;
-};
+}
 
 const initialState: LoginFormState = {
 	login: '',

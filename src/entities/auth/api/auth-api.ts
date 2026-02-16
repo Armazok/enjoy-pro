@@ -1,4 +1,9 @@
-export const fakeLogin = (login: string, password: string): Promise<string> => {
+export interface fakeLoginProps {
+	login: string;
+	password: string;
+}
+
+export const fakeLogin = ({ login, password }: fakeLoginProps): Promise<string> => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			if (login === 'admin' && password === 'admin') {

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { fakeLogin } from '../api/auth-api';
+import { fakeLogin, type fakeLoginProps } from '../api/auth-api';
 import { authStorage } from '../lib/auth-storage';
 
 const authKeys = {
@@ -12,8 +12,7 @@ export const useLogin = () => {
 	const queryClient = useQueryClient();
 
 	return useMutation({
-		mutationFn: ({ login, password }: { login: string; password: string }) =>
-			fakeLogin(login, password),
+		mutationFn: ({ login, password }: fakeLoginProps) => fakeLogin({ login, password }),
 		onSuccess: (token) => {
 			authStorage.setToken(token);
 

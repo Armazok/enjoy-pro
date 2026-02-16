@@ -40,6 +40,7 @@ export const UserName = styled.h4`
 	font-size: 16px;
 	color: #333;
 	transition: color 0.2s ease;
+	display: inline-block;
 
 	&:hover {
 		color: #1890ff;
