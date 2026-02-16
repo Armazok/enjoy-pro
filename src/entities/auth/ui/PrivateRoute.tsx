@@ -6,7 +6,11 @@ import { ROUTES } from '@shared/constant';
 
 import { authStorage } from '../lib/auth-storage';
 
-export const PrivateRoute = ({ children }: { children: ReactNode }) => {
+interface PrivateRouteProps {
+	children: ReactNode;
+}
+
+export const PrivateRoute = ({ children }: PrivateRouteProps) => {
 	const token = authStorage.getToken();
 
 	if (!token) {

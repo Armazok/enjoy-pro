@@ -24,13 +24,14 @@ export const useCreateUser = () => {
 		clearAllErrors();
 	}, [closeModal, resetForm, clearAllErrors]);
 
-	const { submitCreateUser, isPending, isError } = useCreateUserAction(handleCloseModal);
+	const { submitCreateUser, isPending, isError, reset } = useCreateUserAction(handleCloseModal);
 
 	const openCreateModal = useCallback(() => {
 		resetForm();
+		reset();
 		clearAllErrors();
 		showModal();
-	}, [resetForm, clearAllErrors, showModal]);
+	}, [resetForm, reset, clearAllErrors, showModal]);
 
 	const handleCreate = useCallback(() => {
 		if (!validate()) return;

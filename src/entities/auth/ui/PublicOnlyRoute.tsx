@@ -6,7 +6,10 @@ import { ROUTES } from '@shared/constant';
 
 import { authStorage } from '../lib/auth-storage';
 
-export const PublicOnlyRoute = ({ children }: { children: ReactNode }) => {
+interface PublicOnlyRouteProps {
+	children: ReactNode;
+}
+export const PublicOnlyRoute = ({ children }: PublicOnlyRouteProps) => {
 	const token = authStorage.getToken();
 
 	if (token) {

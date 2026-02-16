@@ -3,7 +3,7 @@ import { type ChangeEvent, memo } from 'react';
 
 import type { UserBase } from '@entities/users';
 
-import { Input, Modal } from '@shared/ui';
+import { ErrorMessage, Input, Modal } from '@shared/ui';
 
 interface CreateUserModalProps {
 	open: boolean;
@@ -19,6 +19,7 @@ interface CreateUserModalProps {
 
 export const CreateUserModal = memo(
 	({
+		isError,
 		open,
 		formData,
 		onOk,
@@ -39,6 +40,7 @@ export const CreateUserModal = memo(
 				okButtonProps={{ disabled: isPending }}
 				cancelButtonProps={{ disabled: isPending }}
 			>
+				{isError && <ErrorMessage message={'Ошибка при создание пользователя'} />}
 				<Input
 					label="Имя"
 					value={formData.name}

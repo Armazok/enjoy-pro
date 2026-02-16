@@ -25,7 +25,6 @@ export const setupAuthInterceptors = () => {
 
 			const statusHandlers: Record<number, RoutePath> = {
 				401: '/login',
-				404: '*',
 				500: '/500',
 			};
 

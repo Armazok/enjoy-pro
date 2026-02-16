@@ -3,23 +3,37 @@ import { useCallback } from 'react';
 import { type UserType, useUserDeleteById, useUserUpdateById } from '@entities/users';
 
 export const useEditUserActions = () => {
-	const { mutate: deleteUser, isPending: isDeleting } = useUserDeleteById();
-	const { mutate: updateUser, isPending: isUpdating } = useUserUpdateById();
+	const {
+		mutate: deleteUser,
+		isPending: isDeleting,
+		error: errorDelete,
+		reset: resetDelete,
+	} = useUserDeleteById();
+	const {
+		mutate: updateUser,
+		isPending: isUpdating,
+		error: errorUpdate,
+		reset: resetUpdate,
+	} = useUserUpdateById();
 
 	const handleDelete = useCallback(
 		(
 			userId: string,
 			options?: { onSuccess?: () => void; onError?: (error: Error) => void },
 		) => {
-			deleteUser(userId, {
-				onError: (error) => {
-					console.error('Ошибка удаления пользователя:', error);
-					options?.onError?.(error as Error);
+			resetDelete();
+			deleteUser(
+				{ id: userId },
+				{
+					onError: (error) => {
+						console.error('Ошибка удаления пользователя:', error);
+						options?.onError?.(error as Error);
+					},
+					onSuccess: options?.onSuccess,
 				},
-				onSuccess: options?.onSuccess,
-			});
+			);
 		},
-		[deleteUser],
+		[deleteUser, resetDelete],
 	);
 
 	const handleUpdate = useCallback(
@@ -28,6 +42,7 @@ export const useEditUserActions = () => {
 			userData: UserType,
 			options?: { onSuccess?: () => void; onError?: (error: Error) => void },
 		) => {
+			resetUpdate();
 			updateUser(
 				{ id: userId, user: userData },
 				{
@@ -39,8 +54,15 @@ export const useEditUserActions = () => {
 				},
 			);
 		},
-		[updateUser],
+		[resetUpdate, updateUser],
 	);
 
-	return { handleDelete, handleUpdate, isPending: isDeleting || isUpdating };
+	return {
+		handleDelete,
+		handleUpdate,
+		isPending: isDeleting || isUpdating,
+		error: errorDelete || errorUpdate,
+		resetUpdate,
+		resetDelete,
+	};
 };

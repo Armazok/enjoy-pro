@@ -11,8 +11,15 @@ export const useEditUser = () => {
 	const { isModalOpen, showModal, closeModal } = useModalState();
 	const [selectedUserId, setSelectedUserId] = useState<string>('');
 
-	const { data: selectedUserData, isLoading, error } = useUserById(selectedUserId);
-	const { handleDelete, handleUpdate, isPending } = useEditUserActions();
+	const { data: selectedUserData, isLoading, error: errorUserById } = useUserById(selectedUserId);
+	const {
+		handleDelete,
+		handleUpdate,
+		isPending,
+		error: errorUpdateOrDelete,
+		resetUpdate,
+		resetDelete,
+	} = useEditUserActions();
 
 	const {
 		errorsValidate,
@@ -31,23 +38,24 @@ export const useEditUser = () => {
 
 	const openEditModal = useCallback(
 		(userId: string) => {
+			resetUpdate();
+			resetDelete();
+
 			setSelectedUserId(userId);
 			showModal();
 		},
-		[showModal],
+		[resetDelete, resetUpdate, showModal],
 	);
 
 	const handleDeleteUser = useCallback(() => {
 		if (!selectedUserData?.id) return;
-		resetAndClose();
-		handleDelete(selectedUserData.id);
+		handleDelete(selectedUserData.id, { onSuccess: () => resetAndClose() });
 	}, [selectedUserData?.id, handleDelete, resetAndClose]);
 
 	const handleUpdateUser = useCallback(() => {
 		if (!selectedUserData?.id || !selectedUserData) return;
 		if (!validate()) return;
-		resetAndClose();
-		handleUpdate(selectedUserData.id, formData);
+		handleUpdate(selectedUserData.id, formData, { onSuccess: () => resetAndClose() });
 	}, [selectedUserData, validate, resetAndClose, handleUpdate, formData]);
 
 	return {
@@ -55,7 +63,7 @@ export const useEditUser = () => {
 		errorsValidate,
 		isModalOpen: isModalOpen,
 		isLoading: isLoading || isPending,
-		error: error ? (error as Error).message : null,
+		error: errorUserById?.message ?? errorUpdateOrDelete?.message ?? null,
 		openEditModal,
 		closeEditModal: resetAndClose,
 		handleChangeAvatar,
