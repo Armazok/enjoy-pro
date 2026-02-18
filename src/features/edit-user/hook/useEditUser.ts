@@ -28,7 +28,7 @@ export const useEditUser = () => {
 		handleChangeName,
 		formData,
 		clearAllErrors,
-	} = useEditUserForm(selectedUserData!);
+	} = useEditUserForm(selectedUserData);
 
 	const resetAndClose = useCallback(() => {
 		setSelectedUserId('');

@@ -24,7 +24,7 @@ export const Providers = ({ children }: ProvidersProps) => {
 							<AuthInterceptorsProvider>{children}</AuthInterceptorsProvider>
 						</Suspense>
 					</ErrorBoundary>
-					<ReactQueryDevtools initialIsOpen={true} />
+					<ReactQueryDevtools initialIsOpen={false} />
 				</QueryClientProvider>
 			</BrowserRouter>
 		</StrictMode>

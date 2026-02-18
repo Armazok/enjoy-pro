@@ -6,6 +6,8 @@ import { Alert } from 'antd';
 import { ErrorLogger } from '@shared/lib';
 import { Button } from '@shared/ui';
 
+import { ErrorBoundaryContainer } from './ErrorBoundary.styled';
+
 import type { ErrorBoundaryProps, ErrorBoundaryState } from '../types/ErrorBoundaryType';
 
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -23,46 +25,32 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 	}
 
 	render() {
-		if (this.state.hasError) {
+		const { hasError, error } = this.state;
+
+		if (hasError && error) {
 			return (
 				<>
 					<ErrorLogger
-						error={this.state.error!}
+						error={error}
 						context={{
-							componentStack: this.state.error?.stack,
+							componentStack: error.stack,
 							componentName: this.props.componentName,
 						}}
 						componentName={this.props.componentName}
 					/>
 
 					{this.props.fallback || (
-						<div
-							role="alert"
-							style={{
-								display: 'flex',
-								flexDirection: 'column',
-								justifyContent: 'center',
-								alignItems: 'center',
-								height: '100vh',
-								textAlign: 'center',
-								padding: '16px',
-								boxSizing: 'border-box',
-							}}
-						>
+						<ErrorBoundaryContainer role="alert">
 							<Alert
 								message="Что-то пошло не так"
 								description="Произошла ошибка при загрузке компонента."
 								type="error"
 								showIcon
 							/>
-							<Button
-								type="primary"
-								style={{ marginTop: 16 }}
-								onClick={() => window.location.reload()}
-							>
+							<Button $mt={16} onClick={() => window.location.reload()}>
 								Обновить страницу
 							</Button>
-						</div>
+						</ErrorBoundaryContainer>
 					)}
 				</>
 			);

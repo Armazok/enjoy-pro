@@ -1,13 +1,8 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
-import { validate } from './validate';
+import { validate, type ValidationErrors, type ValidationSchema } from './validate';
 
-import type { ValidationSchema, ValidationErrors } from './validate';
-
-export const useValidation = <T extends Record<string, any>>(
-	data: T,
-	schema: ValidationSchema<T>,
-) => {
+export const useValidation = <T extends object>(data: T, schema: ValidationSchema<T>) => {
 	const [errorsValidate, setErrorsValidate] = useState<ValidationErrors<T>>({});
 
 	const runValidation = useCallback(() => {

@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 import { ROUTES } from '@shared/constant';
 
@@ -7,6 +8,7 @@ import { authStorage } from '../lib/auth-storage';
 
 export const useLogout = () => {
 	const queryClient = useQueryClient();
+	const navigate = useNavigate();
 
 	return useMutation({
 		mutationFn: async () => {
@@ -20,7 +22,7 @@ export const useLogout = () => {
 				token: null,
 			});
 
-			window.location.href = ROUTES.LOGIN;
+			navigate(ROUTES.LOGIN, { replace: true });
 		},
 	});
 };

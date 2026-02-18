@@ -2,15 +2,17 @@ import React, { memo } from 'react';
 
 import { Spin } from 'antd';
 
+import { LoaderContainer } from './Loader.styled';
+
 interface LoaderProps {
 	text?: string;
 }
 
 export const Loader = memo(({ text = 'Загрузка...' }: LoaderProps) => {
 	return (
-		<div style={{ padding: 20, textAlign: 'center' }}>
+		<LoaderContainer>
 			<Spin tip={text} />
-		</div>
+		</LoaderContainer>
 	);
 });
 

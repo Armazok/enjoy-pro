@@ -1,6 +1,7 @@
 import React from 'react';
 
-import styled from 'styled-components';
+import { Empty } from 'antd';
+import { styled } from 'styled-components';
 
 import type { UserType } from '@entities/users';
 
@@ -27,7 +28,7 @@ export const UsersListContent = ({ users, onEditUser }: Props) => {
 					))}
 				</ListContainer>
 			) : (
-				<div>Пользователей нету, но вы можете его создать</div>
+				<Empty description="Пользователей нету, но вы можете его создать" />
 			)}
 		</>
 	);

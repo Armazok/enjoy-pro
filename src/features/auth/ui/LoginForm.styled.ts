@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 export const LoginFormContainer = styled.div`
 	max-width: 400px;

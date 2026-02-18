@@ -6,18 +6,20 @@ export type ValidationErrors<T> = {
 	[K in keyof T]?: string;
 };
 
-export const validate = <T extends Record<string, any>>(
+export const validate = <T extends object>(
 	data: T,
 	schema: ValidationSchema<T>,
 ): ValidationErrors<T> => {
 	const errors: ValidationErrors<T> = {};
 
-	for (const key in schema) {
+	for (const key of Object.keys(schema) as Array<keyof T>) {
 		const rules = schema[key];
 		if (!rules) continue;
 
+		const value = data[key];
+
 		for (const rule of rules) {
-			const error = rule(data[key]);
+			const error = rule(value);
 			if (error) {
 				errors[key] = error;
 				break;

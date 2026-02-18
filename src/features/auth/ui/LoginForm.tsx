@@ -13,7 +13,7 @@ export const LoginForm = () => {
 
 	return (
 		<LoginFormContainer>
-			<Heading style={{ marginBottom: '20px' }}>Авторизация</Heading>
+			<Heading $mb={20}>Авторизация</Heading>
 			<FormError error={error} />
 			<LoginFormFields
 				login={login}

@@ -2,6 +2,8 @@ import React, { memo, type MemoExoticComponent } from 'react';
 
 import { Input as AntInput, Typography } from 'antd';
 
+import { BaseInputContainer } from './Input.styled';
+
 import type { InputProps as AntInputProps } from 'antd';
 
 interface InputProps extends AntInputProps {
@@ -11,15 +13,11 @@ interface InputProps extends AntInputProps {
 
 const BaseInput = ({ error, label, ...props }: InputProps) => {
 	return (
-		<div style={{ marginBottom: 16 }}>
-			{label && (
-				<Typography.Title level={5} style={{ fontWeight: 'normal' }}>
-					{label}
-				</Typography.Title>
-			)}
+		<BaseInputContainer>
+			{label && <Typography.Title level={5}>{label}</Typography.Title>}
 			<AntInput {...props} status={error ? 'error' : undefined} />
 			{error && <Typography.Text type="danger">{error}</Typography.Text>}
-		</div>
+		</BaseInputContainer>
 	);
 };
 
