@@ -3,7 +3,7 @@ import { type ChangeEvent, memo } from 'react';
 
 import type { UserBase } from '@entities/users';
 
-import { ErrorMessage, Input, Modal } from '@shared/ui';
+import { Button, ErrorMessage, Input, Modal } from '@shared/ui';
 
 interface CreateUserModalProps {
 	open: boolean;
@@ -36,9 +36,14 @@ export const CreateUserModal = memo(
 				onCancel={onCancel}
 				title="Создание пользователя"
 				okText="Создать"
-				cancelText="Отмена"
-				okButtonProps={{ disabled: isPending }}
-				cancelButtonProps={{ disabled: isPending }}
+				footer={[
+					<Button key="submit" type="primary" onClick={onOk} disabled={isPending}>
+						Создать
+					</Button>,
+					<Button key="cancel" onClick={onCancel} disabled={isPending}>
+						Отмена
+					</Button>,
+				]}
 			>
 				{isError && <ErrorMessage message={'Ошибка при создание пользователя'} />}
 				<Input

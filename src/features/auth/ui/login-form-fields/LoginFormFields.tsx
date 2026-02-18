@@ -44,11 +44,7 @@ export const LoginFormFields: React.FC<LoginFormFieldsProps> = ({
 			</FieldWrapper>
 
 			<ButtonWrapper>
-				<Button
-					disabled={isPending || !login || !password}
-					type="primary"
-					htmlType="submit"
-				>
+				<Button disabled={isPending} htmlType="submit">
 					{isPending ? <Loader /> : 'Войти'}
 				</Button>
 			</ButtonWrapper>
