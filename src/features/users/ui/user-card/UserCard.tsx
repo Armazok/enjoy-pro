@@ -17,19 +17,17 @@ export const UserCard = memo(({ user, onClick }: Props) => {
 
 	const handleClick = useCallback(
 		(e: MouseEvent<HTMLDivElement>) => {
-			const target = e.target as HTMLElement;
-			if (target.tagName === 'IMG' || target.tagName === 'H4') {
-				onClick(id);
-			}
+			const el = (e.target as HTMLElement).closest('[data-clickable]');
+			if (el) onClick(id);
 		},
 		[onClick, id],
 	);
 
 	return (
 		<CardArticle onClick={handleClick}>
-			<Avatar src={avatar} alt={name} width={50} height={50} />
+			<Avatar data-clickable="userImg" src={avatar} alt={name} width={50} height={50} />
 			<UserInfo>
-				<UserName>{name}</UserName>
+				<UserName data-clickable="userName">{name}</UserName>
 				<RegistrationDate>Зарегистрирован {formatDate(createdAt)}</RegistrationDate>
 			</UserInfo>
 		</CardArticle>

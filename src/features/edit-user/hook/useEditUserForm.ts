@@ -5,8 +5,15 @@ import type { UserType } from '@entities/users';
 
 import { userSchema, useValidation } from '@shared/lib';
 
-export const useEditUserForm = (initialData: UserType) => {
-	const [formData, setFormData] = useState<UserType>(() => initialData);
+const defaultData: UserType = {
+	id: '',
+	name: '',
+	avatar: '',
+	createdAt: '',
+};
+
+export const useEditUserForm = (initialData?: UserType) => {
+	const [formData, setFormData] = useState<UserType>(() => initialData ?? defaultData);
 
 	const { errorsValidate, validate, clearAllErrors } = useValidation<UserType>(
 		formData,

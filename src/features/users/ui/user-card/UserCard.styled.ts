@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 export const CardArticle = styled.article`
 	max-width: 80%;

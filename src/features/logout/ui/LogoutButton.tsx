@@ -1,14 +1,10 @@
-import React, { type CSSProperties } from 'react';
+import React from 'react';
 
 import { authStorage, useLogout } from '@entities/auth';
 
 import { Button } from '@shared/ui';
 
-interface LogoutButtonProps {
-	style?: CSSProperties;
-}
-
-export const LogoutButton = ({ style, ...props }: LogoutButtonProps) => {
+export const LogoutButton = ({ ...props }) => {
 	const { mutate: logout, isPending } = useLogout();
 	const isAuthenticated = !!authStorage.getToken();
 
@@ -17,7 +13,7 @@ export const LogoutButton = ({ style, ...props }: LogoutButtonProps) => {
 	}
 
 	return (
-		<Button onClick={() => logout()} style={style} disabled={isPending} {...props}>
+		<Button onClick={() => logout()} disabled={isPending} {...props}>
 			{isPending ? 'Выход из системы...' : 'Выход'}
 		</Button>
 	);

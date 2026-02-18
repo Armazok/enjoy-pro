@@ -1,29 +1,27 @@
 import { useEffect } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { ROUTES } from '@shared/constant';
 
 import { authStorage } from '../lib/auth-storage';
 
 export const useAuthStorageWatcher = () => {
-	const location = useLocation();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const handleStorage = (e: StorageEvent) => {
 			if (e.key === authStorage.TOKEN_KEY && !e.newValue) {
-				if (location.pathname !== ROUTES.LOGIN) {
-					window.location.href = ROUTES.LOGIN;
-				}
+				navigate(ROUTES.LOGIN, { replace: true });
 			}
 		};
 
 		window.addEventListener('storage', handleStorage);
 
-		if (!authStorage.getToken() && location.pathname !== ROUTES.LOGIN) {
-			window.location.href = ROUTES.LOGIN;
+		if (!authStorage.getToken()) {
+			navigate(ROUTES.LOGIN, { replace: true });
 		}
 
 		return () => window.removeEventListener('storage', handleStorage);
-	}, [location.pathname]);
+	}, [navigate]);
 };

@@ -1,3 +1,5 @@
+import { type NavigateFunction } from 'react-router-dom';
+
 import { axiosInstance } from '@shared/config';
 import { type RoutePath } from '@shared/constant';
 
@@ -7,7 +9,7 @@ import type { AxiosError, AxiosResponse } from 'axios';
 
 let initialized = false;
 
-export const setupAuthInterceptors = () => {
+export const setupAuthInterceptors = (navigate: NavigateFunction) => {
 	if (initialized) return;
 
 	axiosInstance.interceptors.request.use((config) => {
@@ -31,7 +33,7 @@ export const setupAuthInterceptors = () => {
 			if (status && status in statusHandlers) {
 				const route = statusHandlers[status];
 				if (route) {
-					window.location.href = route;
+					navigate(route, { replace: true });
 				}
 			}
 			return Promise.reject(error);
