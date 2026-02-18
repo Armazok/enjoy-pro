@@ -13,18 +13,15 @@ export const useUserUpdateById = () => {
 		mutationFn: ({ id, user }) => userUpdateById(id, user),
 
 		onSuccess: (updatedUser, variables) => {
+			if (!updatedUser) return;
+
 			queryClient.setQueryData(userKeys.detail(variables.id), updatedUser);
 
 			queryClient.setQueriesData({ queryKey: userKeys.all }, (oldData: unknown) => {
-				if (!oldData) return oldData;
+				if (!oldData || !Array.isArray(oldData)) return oldData;
 
-				if (Array.isArray(oldData)) {
-					const typedOldData = oldData as unknown as UserType[];
-
-					return typedOldData.map((user) =>
-						user.id === variables.id ? updatedUser : user,
-					);
-				}
+				const typedOldData = oldData as UserType[];
+				return typedOldData.map((user) => (user.id === variables.id ? updatedUser : user));
 			});
 		},
 	});

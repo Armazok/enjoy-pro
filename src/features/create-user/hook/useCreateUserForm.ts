@@ -3,9 +3,7 @@ import { useState, useCallback } from 'react';
 
 import { type UserBase } from '@entities/users';
 
-import { useValidation } from '@shared/lib';
-
-import { userSchema } from '../model/validation';
+import { userSchema, useValidation } from '@shared/lib';
 
 export const useCreateUserForm = () => {
 	const [formData, setFormData] = useState<UserBase>({

@@ -49,12 +49,19 @@ module.exports = {
 		],
 
 		'boundaries/dependency-rules': [
-			{ from: 'app', allow: ['shared', 'entities', 'features', 'widgets', 'pages'] },
+			{
+				from: 'app',
+				allow: ['shared', 'entities', 'features', 'widgets', 'pages'],
+			},
 			{ from: 'pages', allow: ['shared', 'widgets', 'features', 'entities'] },
 			{ from: 'pages', disallow: ['app'] },
 			{ from: 'features', allow: ['shared', 'widgets', 'entities', 'features'] },
 			{ from: 'features', disallow: ['app', 'pages'] },
-			{ from: 'widgets', allow: ['shared', 'features', 'entities'] },
+			{
+				from: 'widgets',
+				allow: ['shared', 'features', 'entities'],
+				disallow: ['app'],
+			},
 			{ from: 'widgets', disallow: ['app', 'pages'] },
 			{ from: 'entities', allow: ['shared', 'entities'] },
 			{ from: 'entities', disallow: ['app', 'pages', 'features', 'widgets'] },
@@ -102,7 +109,7 @@ module.exports = {
 		'no-debugger': 'warn',
 
 		// ============ TYPESCRIPT ============
-		'@typescript-eslint/no-empty-interface': 'off',
+		'@typescript-eslint/no-empty-interface': 'error',
 		'@typescript-eslint/no-unused-vars': [
 			'warn',
 			{

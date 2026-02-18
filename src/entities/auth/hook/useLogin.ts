@@ -1,12 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { fakeLogin, type fakeLoginProps } from '../api/auth-api';
+import { authKeys } from '../constant/auth-query-keys';
 import { authStorage } from '../lib/auth-storage';
-
-const authKeys = {
-	all: ['auth'] as const,
-	session: () => [...authKeys.all, 'session'] as const,
-};
 
 export const useLogin = () => {
 	const queryClient = useQueryClient();
@@ -23,7 +19,6 @@ export const useLogin = () => {
 		},
 		onError: (error: Error) => {
 			console.error('Не верный логин или пароль:', error.message);
-			throw new Error('Не верный логин или пароль');
 		},
 	});
 };

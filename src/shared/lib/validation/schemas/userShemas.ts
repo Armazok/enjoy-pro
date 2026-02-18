@@ -1,4 +1,4 @@
-import { required, url } from '@shared/lib';
+import { required, url } from '../rules';
 
 export const userSchema = {
 	name: [required('Имя обязательно')],

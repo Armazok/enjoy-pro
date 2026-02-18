@@ -1,4 +1,4 @@
-export type Rule<T> = (value: T) => string | undefined;
+type Rule<T> = (value: T) => string | undefined;
 
 export const required =
 	(message = 'Поле обязательно'): Rule<any> =>

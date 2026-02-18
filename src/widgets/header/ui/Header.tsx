@@ -1,46 +1,31 @@
 import React from 'react';
 
-import { NavLink } from 'react-router-dom';
-
-import { routeConfig } from '@app/providers';
-
 import { authStorage } from '@entities/auth';
 
-interface HeaderProps {}
+import { navigationConfig } from '@shared/config';
 
-const Header = ({}: HeaderProps) => {
+import { HeaderRoot, Nav, NavItem } from './Header.styles';
+
+const Header = () => {
 	const isAuthenticated = !!authStorage.getToken();
 
-	return (
-		<header style={{ padding: '1rem', borderBottom: '1px solid #ccc', marginBottom: '20px' }}>
-			<nav>
-				{routeConfig
-					.filter((route) => route.meta?.label && !route.meta.hidden)
-					.filter((route) => {
-						if (route.meta?.private) return isAuthenticated;
-						if (route.meta?.publicOnly) return !isAuthenticated;
-						return true;
-					})
-					.map((route) => {
-						if (!route.path) return null;
+	const visibleLinks = navigationConfig.filter((item) => {
+		if (item.private) return isAuthenticated;
+		if (item.publicOnly) return !isAuthenticated;
+		return true;
+	});
 
-						return (
-							<NavLink
-								key={route.path}
-								to={route.path}
-								style={({ isActive }) => ({
-									marginRight: '1rem',
-									textDecoration: isActive ? 'underline' : 'none',
-								})}
-							>
-								{route.meta?.label}
-							</NavLink>
-						);
-					})}
-			</nav>
-		</header>
+	return (
+		<HeaderRoot>
+			<Nav>
+				{visibleLinks.map(({ path, label }) => (
+					<NavItem key={path} to={path}>
+						{label}
+					</NavItem>
+				))}
+			</Nav>
+		</HeaderRoot>
 	);
 };
 
-Header.displayName = 'Header';
 export default Header;

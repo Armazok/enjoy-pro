@@ -12,15 +12,14 @@ export const useUserCreate = () => {
 		mutationFn: (dataTransfer: UserBase) => userCreate(dataTransfer),
 
 		onSuccess: (createdUser: UserType) => {
-			queryClient.setQueryData(userKeys.detail(createdUser.id), createdUser);
-
-			queryClient.setQueriesData({ queryKey: userKeys.all }, (oldData: unknown) => {
+			queryClient.setQueryData(userKeys.all, (oldData: unknown) => {
 				if (Array.isArray(oldData)) {
 					const typedOldData = oldData as unknown as UserType[];
 					return [...typedOldData, createdUser];
 				}
 				return [createdUser];
 			});
+			queryClient.setQueryData(userKeys.detail(createdUser.id), createdUser);
 		},
 	});
 };

@@ -49,6 +49,8 @@ export const useEditUser = () => {
 
 	const handleDeleteUser = useCallback(() => {
 		if (!selectedUserData?.id) return;
+		setSelectedUserId('');
+
 		handleDelete(selectedUserData.id, { onSuccess: () => resetAndClose() });
 	}, [selectedUserData?.id, handleDelete, resetAndClose]);
 

@@ -39,7 +39,7 @@ export const UsersList = () => {
 				isLoading={isLoading}
 				error={error}
 				errorsValidate={errorsValidate}
-				isModalOpen={isModalOpenEdit}
+				isModalOpen={isModalOpenEdit && !!formDataEditUser}
 				closeEditModal={closeEditModal}
 				handleChangeAvatar={handleChangeAvatar}
 				handleChangeName={handleChangeName}

@@ -3,9 +3,7 @@ import type { ChangeEvent } from 'react';
 
 import type { UserType } from '@entities/users';
 
-import { useValidation } from '@shared/lib';
-
-import { userSchema } from '../model/validation';
+import { userSchema, useValidation } from '@shared/lib';
 
 export const useEditUserForm = (initialData: UserType) => {
 	const [formData, setFormData] = useState<UserType>(() => initialData);
