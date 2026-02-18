@@ -1,7 +1,10 @@
 import type { ErrorInfo } from 'react';
 import React, { Component } from 'react';
 
+import { Alert } from 'antd';
+
 import { ErrorLogger } from '@shared/lib';
+import { Button } from '@shared/ui';
 
 import type { ErrorBoundaryProps, ErrorBoundaryState } from '../types/ErrorBoundaryType';
 
@@ -33,11 +36,32 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 					/>
 
 					{this.props.fallback || (
-						<div role="alert">
-							<h2>Что-то пошло не так</h2>
-							<button onClick={() => window.location.reload()}>
+						<div
+							role="alert"
+							style={{
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'center',
+								alignItems: 'center',
+								height: '100vh',
+								textAlign: 'center',
+								padding: '16px',
+								boxSizing: 'border-box',
+							}}
+						>
+							<Alert
+								message="Что-то пошло не так"
+								description="Произошла ошибка при загрузке компонента."
+								type="error"
+								showIcon
+							/>
+							<Button
+								type="primary"
+								style={{ marginTop: 16 }}
+								onClick={() => window.location.reload()}
+							>
 								Обновить страницу
-							</button>
+							</Button>
 						</div>
 					)}
 				</>

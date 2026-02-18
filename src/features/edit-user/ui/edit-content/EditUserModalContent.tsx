@@ -35,7 +35,7 @@ export const EditUserModalContent = ({
 				error={errorsValidate.name}
 			/>
 			<Input
-				label="Ссылка на фотографию"
+				label="Ссылка на аватарку"
 				value={formData.avatar}
 				onChange={onChangeAvatar}
 				error={errorsValidate.avatar}

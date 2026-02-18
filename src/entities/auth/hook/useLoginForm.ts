@@ -1,8 +1,6 @@
 import type { ChangeEvent, FormEvent } from 'react';
 import { useState, useCallback } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
 import { ROUTES } from '@shared/constant';
 
 import { useLogin } from '../hook/useLogin';
@@ -20,7 +18,6 @@ const initialState: LoginFormState = {
 };
 
 export const useLoginForm = () => {
-	const navigate = useNavigate();
 	const { mutate, isPending } = useLogin();
 	const [state, setState] = useState<LoginFormState>(() => initialState);
 	const { login, password, error } = state;
@@ -34,7 +31,7 @@ export const useLoginForm = () => {
 				{ login, password },
 				{
 					onSuccess: () => {
-						navigate(ROUTES.USERS);
+						window.location.href = ROUTES.USERS;
 					},
 					onError: (err: Error) => {
 						setState((prev) => ({ ...prev, error: err.message }));
@@ -42,7 +39,7 @@ export const useLoginForm = () => {
 				},
 			);
 		},
-		[login, password, mutate, navigate],
+		[login, password, mutate],
 	);
 
 	const onChangeLogin = useCallback((e: ChangeEvent<HTMLInputElement>) => {

@@ -18,19 +18,16 @@ export const ErrorLogger: FC<ErrorLoggerProps> = ({
 }) => {
 	useEffect(() => {
 		if (showInConsole) {
-			console.group(
-				`ErrorBoundary поймал ошибку в ${componentName}`,
-				'color: red; font-weight: bold;',
-			);
+			console.group(`ErrorBoundary поймал ошибку в ${componentName}`);
 
-			console.log(`Сообщение:`, 'color: orange;', error.message || '');
-			console.log(`Стек:`, 'color: orange;', error.stack || '');
+			console.log(`Сообщение:`, error.message || '');
+			console.log(`Стек:`, error.stack || '');
 
 			if (context) {
-				console.log(`Контекст:`, 'color: orange;', context);
+				console.log(`Контекст:`, context);
 			}
 
-			console.log(`Время:`, 'color: gray;', new Date().toLocaleString());
+			console.log(`Время:`, new Date().toLocaleString());
 			console.groupEnd();
 		}
 	}, [error, context, componentName, showInConsole]);

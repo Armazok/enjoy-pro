@@ -4,7 +4,7 @@ import { Button as AntdButton } from 'antd';
 
 import type { ButtonProps as AntdButtonProps } from 'antd';
 
-interface ButtonProps extends AntdButtonProps {}
+type ButtonProps = AntdButtonProps;
 
 export const Button = memo(({ children, type = 'primary', ...otherProps }: ButtonProps) => {
 	return (

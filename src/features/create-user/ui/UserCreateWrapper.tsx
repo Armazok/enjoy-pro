@@ -5,9 +5,7 @@ import { Button } from '@shared/ui';
 import { useCreateUser } from '../hook/useCreateUser';
 import { CreateUserModal } from '../ui/CreateUserModal';
 
-interface CreateUserWrapperProps {}
-
-export const UserCreateWrapper = ({}: CreateUserWrapperProps) => {
+export const UserCreateWrapper = () => {
 	const {
 		isModalOpen,
 		openCreateModal,
