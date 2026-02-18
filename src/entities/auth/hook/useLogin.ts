@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { fakeLogin, type fakeLoginProps } from '../api/auth-api';
+import { authKeys } from '../constant/auth-query-keys';
 import { authStorage } from '../lib/auth-storage';
-import { authKeys } from '../model/queryKeys';
 
 export const useLogin = () => {
 	const queryClient = useQueryClient();

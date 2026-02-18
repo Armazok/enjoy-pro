@@ -2,8 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { ROUTES } from '@shared/constant';
 
+import { authKeys } from '../constant/auth-query-keys';
 import { authStorage } from '../lib/auth-storage';
-import { authKeys } from '../model/queryKeys';
 
 export const useLogout = () => {
 	const queryClient = useQueryClient();

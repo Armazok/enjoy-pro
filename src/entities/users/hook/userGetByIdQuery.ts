@@ -10,7 +10,11 @@ import type { AxiosError } from 'axios';
 export const useUserById = (id: string) => {
 	return useQuery<UserType, AxiosError>({
 		queryKey: userKeys.detail(id ?? 'skip'),
-		queryFn: () => userGetById(id),
+		queryFn: () => {
+			if (!id) return Promise.reject(new Error('Нет ID пользователя'));
+			return userGetById(id);
+		},
 		enabled: !!id,
+		retry: false,
 	});
 };
