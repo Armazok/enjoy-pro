@@ -27,7 +27,7 @@ export const EditUserModalContent = ({
 
 	return (
 		<>
-			<Input label="ID" value={formData.id} disabled />
+			<Input label="id" value={formData.id} disabled />
 			<Input
 				label="Имя"
 				value={formData.name}

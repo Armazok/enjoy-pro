@@ -12,7 +12,11 @@ interface InputProps extends AntInputProps {
 const BaseInput = ({ error, label, ...props }: InputProps) => {
 	return (
 		<div style={{ marginBottom: 16 }}>
-			{label && <Typography.Title level={5}>{label}</Typography.Title>}
+			{label && (
+				<Typography.Title level={5} style={{ fontWeight: 'normal' }}>
+					{label}
+				</Typography.Title>
+			)}
 			<AntInput {...props} status={error ? 'error' : undefined} />
 			{error && <Typography.Text type="danger">{error}</Typography.Text>}
 		</div>

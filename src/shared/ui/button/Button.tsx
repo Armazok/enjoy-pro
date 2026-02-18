@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import { Button as AntdButton } from 'antd';
+import { StyledAntdButton } from './Button.styled';
 
 import type { ButtonProps as AntdButtonProps } from 'antd';
 
@@ -8,9 +8,9 @@ type ButtonProps = AntdButtonProps;
 
 export const Button = memo(({ children, type = 'primary', ...otherProps }: ButtonProps) => {
 	return (
-		<AntdButton type={type} {...otherProps}>
+		<StyledAntdButton type={type} {...otherProps}>
 			{children}
-		</AntdButton>
+		</StyledAntdButton>
 	);
 });
 

@@ -4,8 +4,7 @@ export const FooterContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 16px 24px;
-	border-top: 1px solid #f0f0f0;
+	padding-top: 28px;
 `;
 
 export const ButtonGroup = styled.div`

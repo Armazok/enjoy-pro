@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const CardArticle = styled.article`
-	max-width: 400px;
-	border-bottom: 2px solid #ccc;
+	max-width: 80%;
 	margin-bottom: 15px;
 	display: flex;
 	align-items: center;
@@ -37,8 +36,8 @@ export const UserInfo = styled.div`
 export const UserName = styled.h4`
 	cursor: pointer;
 	margin: 0 0 4px 0;
-	font-size: 16px;
 	color: #333;
+	font-weight: 600;
 	transition: color 0.2s ease;
 	display: inline-block;
 
